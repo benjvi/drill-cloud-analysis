@@ -20,4 +20,4 @@ drill-embedded -f query.sql --silent=true --showHeader=false --outputformat=csv 
 
 # parse query results and perform the desired action
 instance_id=$(cat /tmp/query-results.csv | csvtool drop 1 - | csvtool col 1 - | tr -d "'")
-aws ec2 describe-instance-status --region eu-west-1 --instance-id "$instance_id"
+echo $instance_id | xargs aws ec2 describe-instance-status --region eu-west-1 --instance-id
